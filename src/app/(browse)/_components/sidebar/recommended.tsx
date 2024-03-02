@@ -3,7 +3,7 @@ import { User } from "@prisma/client";
 
 import { useSiderbar } from "../../../../../store/use-sidebar";
 
-import { UserIremSkeleton, UserItem } from "./user-item";
+import { UserItemSkeleton, UserItem } from "./user-item";
 
 
 interface RecommendedProps {
@@ -47,7 +47,7 @@ export const RecommendSkeleton = () =>{
         <ul className="px-2">
             {
                 [...Array(3)].map((_, i) =>(
-                    <UserIremSkeleton key={i}></UserIremSkeleton>
+                    <UserItemSkeleton key={i}></UserItemSkeleton>
                 )) 
             }
         </ul>
