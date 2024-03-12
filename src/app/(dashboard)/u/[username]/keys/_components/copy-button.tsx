@@ -23,7 +23,7 @@ export const CopyButton = ({
         },1000)
     }
 
-    const Icon = isCopied ? CheckCheck :Copy
+    const Icon = isCopied ? CheckCheck : Copy
     return (
         <Button
             onClick={onCopy}

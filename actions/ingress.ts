@@ -18,8 +18,8 @@ import { revalidatePath } from "next/cache"
 const roomService = new RoomServiceClient(
     process.env.LIVEKIT_API_URL!,
     process.env.LIVEKIT_API_KEY!,
-    process.env.LIVEKIT_API_SECREAT!,
-)
+    process.env.LIVEKIT_API_SECRET!,
+);
 
 const ingressCLient = new IngressClient(process.env.LIVEKIT_API_URL!)
 
@@ -42,6 +42,8 @@ export const resetIngresses = async (hostIdentity:string) => {
 }
 export const createIngress = async (ingressType: IngressInput) => {
     const self = await getSelf()
+
+    await resetIngresses(self.id)
 
     const options: CreateIngressOptions = {
         name:self.username,

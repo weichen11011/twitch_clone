@@ -44,6 +44,13 @@ export const getRecommended =async () => {
                 }
             ]
             },
+            include:{
+                stream: {
+                    select:{
+                        isLive: true
+                    }
+                }
+            },
             orderBy:{
                 createdAt:"desc"
             }
@@ -53,6 +60,13 @@ export const getRecommended =async () => {
             orderBy:{
                 createdAt: "desc"
             },
+            include:{
+                stream:{
+                    select:{
+                        isLive:true
+                    }
+                }
+            }
         })
     }
     

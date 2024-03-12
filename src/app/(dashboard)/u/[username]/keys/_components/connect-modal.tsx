@@ -16,54 +16,88 @@ import {
     AlertTitle
 } from "@/components/ui/alert"
 import { AlertTriangle } from "lucide-react"
-import { 
+import {
     Select,
     SelectContent,
+    SelectItem,
     SelectTrigger,
-    SelectValue
-} from "@/components/ui/select"
-import { SelectItem } from "@radix-ui/react-select"
+    SelectValue,
+  } from "@/components/ui/select";
 
-export const ConnecttModal =() => {
+import { IngressInput } from "livekit-server-sdk"
+import { useState,useTransition,useRef, ElementRef } from "react"
+
+import { createIngress } from "../../../../../../../actions/ingress"
+import { toast } from "sonner"
+
+const RTMP = String(IngressInput.RTMP_INPUT);
+const WHIP = String(IngressInput.WHIP_INPUT);
+
+type IngressType = typeof RTMP | typeof WHIP;
+
+export const ConnectModal =() => {
+    const closeRef = useRef<ElementRef<"button">>(null);
+    const [isPending, startTransition] = useTransition();
+    const [ingressType, setIngressType] = useState<IngressType>(RTMP);
+    //console.log(isPending)
+
+    const onSubmit = () => {
+        startTransition(() => {
+            createIngress(parseInt(ingressType))
+            .then(() => {
+                toast.success("Ingress created")
+                closeRef?.current?.click()
+            })
+            .catch(() => toast.error("Something went wrong"))
+        })
+    }
+
     return(
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="primary">
-                    Generate connection
-                </Button>
-            </DialogTrigger>
-            <DialogContent>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button variant="primary">
+                        Generate connection
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Generate connection</DialogTitle>
                 </DialogHeader>
-                <Select>
+                <Select
+                    disabled={isPending}
+                    value={ingressType}
+                    onValueChange={(value) => setIngressType(value)}
+                >
                     <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Ingress Type"/>
+                        <SelectValue placeholder="Ingress Type" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="RTMP">RTMP</SelectItem>
-                        <SelectItem value="WHIP">WHIP</SelectItem>
+                        <SelectItem value={RTMP}>RTMP</SelectItem>
+                        <SelectItem value={WHIP}>WHIP</SelectItem>
                     </SelectContent>
                 </Select>
                 <Alert>
-                    <AlertTriangle className="h-4 w-4"></AlertTriangle>
+                    <AlertTriangle className="h-4 w-4" />
                     <AlertTitle>Warning!</AlertTitle>
-                    <AlertDescription>This action will reset all active all active streams using the current connection</AlertDescription>
+                    <AlertDescription>
+                    This action will reset all active streams using the current connection
+                    </AlertDescription>
                 </Alert>
                 <div className="flex justify-between">
-                    <DialogClose>
-                        <Button variant="ghost">
-                            Cancel
-                        </Button>
+                    <DialogClose ref={closeRef} asChild>
+                    <Button variant="ghost">
+                        Cancel
+                    </Button>
                     </DialogClose>
                     <Button
-                        onClick={() => {}}
-                        variant="primary"
+                    disabled={isPending}
+                    onClick={onSubmit}
+                    variant="primary"
                     >
-                        Generate
+                    123
                     </Button>
                 </div>
-            </DialogContent>
+                </DialogContent>
         </Dialog>
     )
 }
