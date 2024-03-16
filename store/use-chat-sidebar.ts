@@ -13,7 +13,7 @@ interface ChatSiderbarStore {
     onChangeVariant: (variant: ChatVariant) => void
 }
 
-export const useChatSiderbar = create<ChatSiderbarStore>((set) => ({
+export const useChatSidebar = create<ChatSiderbarStore>((set) => ({
     collapsed:false,
     variant:ChatVariant.CHAT,
     onExpand : () => set(() => ({ collapsed: false})),

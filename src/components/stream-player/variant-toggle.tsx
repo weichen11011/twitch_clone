@@ -4,14 +4,14 @@ import { ArrowLeftFromLine, ArrowRightFromLine, MessageSquare, Users } from "luc
 
 import { Hint } from "../hint"
 import { Button } from "../ui/button"
-import { ChatVariant, useChatSiderbar } from "../../../store/use-chat-sidebar"
+import { ChatVariant, useChatSidebar } from "../../../store/use-chat-sidebar"
 import { Label } from "@radix-ui/react-select"
 
 export const VariantToggle =() => {
     const {
         variant,
         onChangeVariant
-    } = useChatSiderbar ((state) => state)
+    } = useChatSidebar ((state) => state)
 
     const isChat = variant === ChatVariant.CHAT
     const Icon = isChat? Users: MessageSquare

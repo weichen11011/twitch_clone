@@ -4,7 +4,7 @@ import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react"
 
 import { Hint } from "../hint"
 import { Button } from "../ui/button"
-import { useChatSiderbar } from "../../../store/use-chat-sidebar"
+import { useChatSidebar } from "../../../store/use-chat-sidebar"
 import { Label } from "@radix-ui/react-select"
 
 export const ChatToggle =() => {
@@ -12,7 +12,7 @@ export const ChatToggle =() => {
         collapsed,
         onExpand,
         onCollapse
-    } = useChatSiderbar ((state) => state)
+    } = useChatSidebar ((state) => state)
 
     const Icon = collapsed ? ArrowLeftFromLine : ArrowRightFromLine
 
