@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
-      <Analytics/>
+      
       <SpeedInsights/>
       <html lang="en">
         <body className={inter.className}>
@@ -34,6 +34,7 @@ export default function RootLayout({
           >
             <Toaster theme="light" position="bottom-center" />
             {children}
+            <Analytics/>
           </ThemeProvider>
         </body>
       </html>
