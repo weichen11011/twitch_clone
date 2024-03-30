@@ -5,6 +5,7 @@ import { Thumbnail, ThumbnailSkeleton } from "@/components/thumbnail";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LiveBadge } from "@/components/live-badge";
 import { UserAvatar, UserAvatarSkeleton } from "@/components/user-avatar";
+import { VerifiedMark } from "@/components/verified-mark";
 
 interface ResultCardProps {
   data: {
@@ -20,13 +21,15 @@ export const ResultCard = ({
 }: ResultCardProps) => {
   return (
     <Link href={`/${data.user.username}`}>
-      <div className="h-full w-full space-y-4">
-        <Thumbnail
-          src={data.thumbnailUrl}
-          fallback={data.user.imageUrl}
-          isLive={data.isLive}
-          username={data.user.username}
-        />
+      <div className="h-full w-full space-y-4 ">
+        <div className="border rounded-md">
+          <Thumbnail
+            src={data.thumbnailUrl}
+            fallback={data.user.imageUrl}
+            isLive={data.isLive}
+            username={data.user.username}
+          />
+        </div>
         <div className="flex gap-x-3">
           <UserAvatar
             username={data.user.username}
@@ -34,9 +37,15 @@ export const ResultCard = ({
             isLive={data.isLive}
           />
           <div className="flex flex-col text-sm overflow-hidden">
-            <p className="truncate font-semibold hover:text-blue-500">
-              {data.name}
-            </p>
+            <div className="flex">
+              <p className="truncate font-semibold hover:text-blue-500 pr-1">
+                {data.name} 
+              </p>
+              <div className="pt-0.5">
+                <VerifiedMark />
+              </div>
+            </div>
+              
             <p className="text-muted-foreground">
               {data.user.username}
             </p>
