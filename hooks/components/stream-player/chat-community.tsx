@@ -53,9 +53,6 @@ export const ChatCommunity = ({
       </div>
     );
   }
-  const tracks = ({
-    audio: true,
-  });
 
   return (
     <div className="p-4">
