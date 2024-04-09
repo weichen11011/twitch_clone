@@ -46,6 +46,7 @@ export const Whiteboard = ({
       if (!canvasRef.current?.toDataURL()) return
       console.log('sending canvas state')
       socket.emit('canvas-state', canvasRef.current.toDataURL())
+      console.log()
 
     })
 

@@ -22,6 +22,6 @@ io.on('connection', function (socket) {
     });
     socket.on('clear', function () { return io.emit('clear'); });
 });
-server.listen(80, function () {
+server.listen(3001, function () {
     console.log('✔️ Server listening on port 3001');
 });
