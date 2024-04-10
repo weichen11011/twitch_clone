@@ -8,7 +8,7 @@ import { ChromePicker } from 'react-color'
 import { io } from 'socket.io-client'
 import { drawLine } from '@/utils/drawLine'
 
-const socket = io('!')
+const socket = io('http://locoalhost:3001')
 
 interface MyComponent {
 
