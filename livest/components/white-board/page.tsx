@@ -8,7 +8,7 @@ import { ChromePicker } from 'react-color'
 import { io } from 'socket.io-client'
 import { drawLine } from '@/utils/drawLine'
 
-const socket = io('https://twitch-clone-server.vercel.app')
+const socket = io('!')
 
 interface MyComponent {
 
@@ -46,7 +46,6 @@ export const Whiteboard = ({
       if (!canvasRef.current?.toDataURL()) return
       console.log('sending canvas state')
       socket.emit('canvas-state', canvasRef.current.toDataURL())
-      console.log()
 
     })
 
