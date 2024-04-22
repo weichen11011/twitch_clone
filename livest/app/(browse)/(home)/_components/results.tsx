@@ -24,7 +24,6 @@ export const Results = async () => {
           <ResultCard
             key={result.id}
             data={result}
-            
           />
         ))}
       </div>
