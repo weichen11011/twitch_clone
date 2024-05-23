@@ -4,8 +4,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'sonner';
 import './globals.css'
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { ThemeProvider } from '@/components/theme-provider'
 
@@ -28,8 +26,7 @@ export default function RootLayout({
 
             <Toaster theme="light" position="bottom-center" />
             {children}
-          <Analytics/>
-          <SpeedInsights/>
+
         </body>
       </html>
     </ClerkProvider>
